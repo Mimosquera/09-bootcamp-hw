@@ -40,16 +40,16 @@ const fetchWeather = async (cityName: string) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ cityName }),
+    body: JSON.stringify({ city: cityName }), // ✅ Fix 1
   });
 
   const weatherData = await response.json();
+  console.log('weatherData: ', weatherData); // Check structure
 
-  console.log('weatherData: ', weatherData);
-
-  renderCurrentWeather(weatherData[0]);
-  renderForecast(weatherData.slice(1));
+  renderCurrentWeather(weatherData.city);
+  renderForecast(weatherData.weather);
 };
+
 
 const fetchSearchHistory = async () => {
   const history = await fetch('/api/weather/history', {
