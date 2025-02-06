@@ -25,7 +25,7 @@ The **Weather Dashboard** is a full-stack web application that allows users to s
 
 2. **Install Dependencies:**
    ```bash
-   npm install
+   npm install && npm run build
    ```
 
 3. **Environment Variables:**
@@ -37,7 +37,7 @@ The **Weather Dashboard** is a full-stack web application that allows users to s
 
 4. **Run the Application Locally:**
    ```bash
-   npm start:dev
+   npm start
    ```
 
 ## Usage
@@ -66,7 +66,7 @@ https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API 
 
 The application is deployed on Render. Visit the live site here:
 
-[Live Application](https://your-render-app-url.com)
+[Live Application](https://zero9-bootcamp-hw.onrender.com)
 
 ## Technologies Used
 
