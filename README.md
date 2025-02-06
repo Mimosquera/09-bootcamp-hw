@@ -37,7 +37,7 @@ The **Weather Dashboard** is a full-stack web application that allows users to s
 
 4. **Run the Application Locally:**
    ```bash
-   npm run dev
+   npm start:dev
    ```
 
 ## Usage
@@ -76,22 +76,6 @@ The application is deployed on Render. Visit the live site here:
 - **Database:** JSON file (`db.json`) for storing search history
 - **Other Tools:** dotenv, uuid, axios
 
-## Contributing
-
-1. Fork the repository.
-2. Create your feature branch:
-   ```bash
-   git checkout -b feature/YourFeature
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m 'Add new feature'
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/YourFeature
-   ```
-5. Open a pull request.
 
 ## License
 
