@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "build": "npx tsc && (if not exist dist\\client mkdir dist\\client && robocopy \"..\\client\\dist\" dist\\client /E || mkdir -p dist/client && cp -r ../client/dist/* dist/client/)",
+    "build": "npx tsc && node -e \"require('os').platform() === 'win32' ? require('child_process').execSync('if not exist dist\\client mkdir dist\\client && robocopy ..\\client\\dist dist\\client /E', { stdio: 'inherit' }) : require('child_process').execSync('mkdir -p dist/client && cp -r ../client/dist/* dist/client/', { stdio: 'inherit' })\"",
     "start": "npm run build && node dist/server.js",
     "dev": "npx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
