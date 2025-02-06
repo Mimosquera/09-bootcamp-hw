@@ -1,168 +1,98 @@
-# 09 Servers and APIs: Weather Dashboard
+# Weather Dashboard
 
-## Your Task
+## Description
 
-External APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Developers are often tasked with retrieving data from another application's API and using it in their context, frequently consuming this data via a server.
+The **Weather Dashboard** is a full-stack web application that allows users to search for the current weather conditions and a 5-day forecast for cities around the world. It utilizes the OpenWeather API to fetch weather data and maintains a search history for easy access to previously searched cities.
 
-Your challenge is to build a weather dashboard application that calls the OpenWeather API and renders data in the browser.
+## Table of Contents
 
-The application’s front end has already been created. It's your job to build the back end, connect the two, and then deploy the entire application to Render.
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [API Information](#api-information)
+- [Deployment](#deployment)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
 
-* Use the [5-day weather forecast API](https://openweathermap.org/forecast5) to retrieve weather data for cities.
+## Installation
 
-* The base URL should look like the following:
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/weather-dashboard.git
+   cd weather-dashboard
+   ```
 
-  ```url
-  https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-  ```
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
-* After registering for a new API key, you may need to wait up to 2 hours for that API key to activate.
+3. **Environment Variables:**
+   Create a `.env` file in the root directory and add your OpenWeather API key:
+   ```env
+   OPENWEATHER_API_KEY=your_api_key_here
+   API_BASE_URL=https://api.openweathermap.org/data/2.5
+   ```
 
-* For more information on how to work with the OpenWeather API, refer to the [Full-Stack Blog on how to use API keys](https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys).
+4. **Run the Application Locally:**
+   ```bash
+   npm run dev
+   ```
 
-## User Story
+## Usage
 
-```md
-AS A traveler
+- **Search for a City:** Enter the name of a city in the search bar and submit to view current weather and a 5-day forecast.
+- **View Search History:** Click on any city in the search history to quickly view its weather data again.
+- **Delete Search History:** Use the delete button next to a city in the history to remove it from the list.
 
-I WANT to see the weather outlook for multiple cities
+## Features
 
-SO THAT I can plan a trip accordingly
+- Displays current weather with temperature, wind speed, humidity, and an icon representing the weather conditions.
+- Provides a 5-day weather forecast with daily weather details.
+- Stores search history locally, allowing quick access to previously searched cities.
+- Responsive design for both desktop and mobile devices.
+
+## API Information
+
+This application utilizes the [OpenWeather 5-Day Forecast API](https://openweathermap.org/forecast5) for retrieving weather data.
+
+### Example API Request
+```bash
+https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 ```
 
-## Acceptance Criteria
+## Deployment
 
-```md
-GIVEN a weather dashboard with form inputs
+The application is deployed on Render. Visit the live site here:
 
-WHEN I search for a city
+[Live Application](https://your-render-app-url.com)
 
-THEN I am presented with current and future conditions for that city, and that city is added to the search history
+## Technologies Used
 
-WHEN I view current weather conditions for that city
+- **Frontend:** HTML, CSS, TypeScript
+- **Backend:** Node.js, Express.js
+- **API:** OpenWeather API
+- **Database:** JSON file (`db.json`) for storing search history
+- **Other Tools:** dotenv, uuid, axios
 
-THEN I am presented with the city name, the date, an icon representation of weather conditions, a description of the weather for the icon's alt tag, the temperature, the humidity, and the wind speed
+## Contributing
 
-WHEN I view future weather conditions for that city
+1. Fork the repository.
+2. Create your feature branch:
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m 'Add new feature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/YourFeature
+   ```
+5. Open a pull request.
 
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+## License
 
-WHEN I click on a city in the search history
-
-THEN I am again presented with current and future conditions for that city
-```
-
-## Mock-Up
-
-The following image shows the web application's appearance and functionality:
-
-![The weather app includes a search option, a list of cities, and a 5-day forecast and current weather conditions for Atlanta ](./Assets/09-servers-and-apis-homework-demo.png)
-
-## Getting Started
-
-On the back end, the application should include a `searchHistory.json` file that will be used to store and retrieve cities using the `fs` module.
-
-The following HTML route should be created:
-
-* `GET *` should return the `index.html` file.
-
-The following API routes should be created:
-
-* `GET /api/weather/history` should read the `searchHistory.json` file and return all saved cities as JSON.
-
-* `POST /api/weather` should receive a city name to save on the request body, add it to the `searchHistory.json` file, and then return associated weather data to the client. You'll need to find a way to give each city name a unique id when it's saved (look into npm packages that could do this for you).
-
-Refer to the [Full-Stack Blog on deploying to Render](https://coding-boot-camp.github.io/full-stack/render/render-deployment-guide) and the [Render documentation on setting environment variables](https://docs.render.com/configure-environment-variables).
-
----
-
-## 💡 Hints
-
-* Using the 5-day weather forecast API, you'll notice that you'll need to pass in coordinates instead of just a city name. Using the OpenWeatherMap APIs, how could we retrieve geographical coordinates given a city name?
-
-* How could we make the OpenWeather API calls server-side, parse the data, and then send the parsed data client-side?
-
-## 🏆 Bonus
-
-This application offers the DELETE functionality on the front end. As a bonus, try to add the DELETE route to the application using the following guideline:
-
-* `DELETE /api/weather/history/:id` should receive a route parameter that contains the id of a city name to delete. To delete a city, you'll need to read all the cities from the `searchHistory.json` file, remove the city with the given `id` property, and then rewrite the cities to the `searchHistory.json` file.
-
----
-
-## Grading Requirements
-
-> **Note** If a Challenge assignment submission is marked as “0”, it's considered incomplete and won't count toward your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code.
->
-> * A repository that includes a unique name but nothing else.
->
-> * A repository that includes only a README file but nothing else.
->
-> * A repository that includes only starter code.
-
-This Challenge is graded based on the following criteria:
-
-### Technical Acceptance Criteria: 40%
-
-The Challenge satisfies all of the above acceptance criteria, plus the following:
-
-* Application uses the OpenWeather API to retrieve weather data.
-
-* Application back end must store cities that have a unique id in a JSON file.
-
-* Application must be deployed to Render.
-
-### Deployment: 32%
-
-The Challenge satisfies all of the above acceptance criteria, plus the following:
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-The Challenge satisfies all of the above acceptance criteria, plus the following:
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-The Challenge satisfies all of the above acceptance criteria, plus the following:
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
-
-### Bonus: +10 Points
-
-Fulfilling the following can add up to 10 points to your grade. Note that the highest grade you can achieve is still 100:
-
-* Application allows users to delete cities.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README file describing the project.
-
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+N/A
